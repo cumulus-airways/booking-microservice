@@ -1,8 +1,8 @@
 replicaCount: 2
 namespace: "kubeapp"
 metadata:
- name: auth-svc 
- label: auth-svc
+ name: book-svc 
+ label: book-svc
 
 mariadb:
   database: "SAMPLE"
@@ -25,8 +25,8 @@ livenessProbe:
   timeoutSeconds: 2
   periodSeconds: 300
 image:
-  name: auth-svc
-  imageName: "auth-svc" 
+  name: book-svc
+  imageName: "book-svc" 
   imagePullPolicy: Always
   ports:
     containerPort: 3004
@@ -44,7 +44,7 @@ image:
   
 hpa:
   metadata:
-    name: auth-svcmicroservicehpa
+    name: book-svcmicroservicehpa
   spec:
     maxReplicas: 10
     minReplicas: 2
@@ -57,7 +57,7 @@ hpa:
     memory:
       targetAverageUtilization: 50
   scaleTargetRef:  
-    name: auth-svc
+    name: book-svc
 
 envOfSecrets:
   envUID:
@@ -106,35 +106,35 @@ envOfConfigmaps:
 
 service:
   serviceMetadata:
-    name: auth-svc
+    name: book-svc
     labels:
-      app: auth-svc
+      app: book-svc
   selector:
-    selectorName: auth-svc
+    selectorName: book-svc
   servicePortConfiguration:
     protocol: TCP
-    name: auth-svc
+    name: book-svc
     type: ClusterIP
     port: 3004
     targetPort: 3004
 
 
 imagestream:
-  name:  auth-svc
-  label: auth-svc
+  name:  book-svc
+  label: book-svc
 
 buildconfig:
-  uri: "https://github.com/cumulus-airways/login-microservice.git"
+  uri: "https://github.com/cumulus-airways/booking-microservice.git"
   branch: "master"
-  name: "auth-svc"
-  imagename: "auth-svc:latest"
+  name: "book-svc"
+  imagename: "book-svc:latest"
   secret1: $(head -c 24 /dev/random | base64)
   secret2: $(head -c 24 /dev/random | base64)
 
 routes:
-  host: "auth-svc-kubeapp.apps.9.30.210.207.nip.io"
+  host: "book-svc-kubeapp.apps.9.30.210.207.nip.io"
   targetPort: 3004
-  name: auth-svc
+  name: book-svc
   weight: 100
 
 
