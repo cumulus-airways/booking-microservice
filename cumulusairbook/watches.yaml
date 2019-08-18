@@ -1,0 +1,5 @@
+---
+- version: v1alpha1
+  group: cumulusair.com
+  kind: CumulusAirAuth
+  chart: /opt/helm/helm-charts/cumulusairauth

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cumulusairbook
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.metadata.name }} 
+data:
+  DATABASE: "{{ .Values.mariadb.database }}"
+  PORT: "3306"
+  HOST: "{{ .Values.mariadb.database }}"
+  PROTOCOL: "TCPIP"

@@ -1,0 +1,13 @@
+apiVersion: cumulusair.com/v1alpha1
+kind: CumulusAirBook
+metadata:
+  name: booksvc
+spec:
+  replicaCount: 2
+  namespace: "kubeapp"
+  mariadb:
+    database: "SAMPLE"
+    host: "mariadb.kubeapp"
+    uid: "YWRtaW4="
+    password: "YWRtaW4="
+    secret: "aGVsbG8="

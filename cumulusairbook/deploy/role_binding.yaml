@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cumulusairbook
+subjects:
+- kind: ServiceAccount
+  name: cumulusairbook
+roleRef:
+  kind: Role
+  name: cumulusairbook
+  apiGroup: rbac.authorization.k8s.io
